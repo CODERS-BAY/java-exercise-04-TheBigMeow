@@ -10,6 +10,8 @@ public class Calculator {
         do {
             System.out.println("Would you like to make floating point calculations? Type y for yes and anything else for integer calculations");
             Scanner sc = new Scanner(System.in);
+            /*https://stackoverflow.com/questions/16040601/why-is-nextline-returning-an-empty-string*/
+            Scanner number = new Scanner(System.in);
 
             String yes = sc.nextLine();
             while (!yes.equals("y") && !yes.equals("n")) {
@@ -17,9 +19,9 @@ public class Calculator {
                 yes = sc.nextLine();
             }
             System.out.println("Input first Number");
-            int numb1 = sc.nextInt();
+            int numb1 = number.nextInt();
             System.out.println("Input second Number");
-            int numb2 = sc.nextInt();
+            int numb2 = number.nextInt();
             System.out.println("""
                     You can make the following calculationsy:
                     1.   addition
@@ -30,7 +32,7 @@ public class Calculator {
 
                     To select a calculation please press the corresponding number""");
 
-            int choose = sc.nextInt();
+            int choose = number.nextInt();
 
             double sum = calcu(numb1, numb2, choose);
             if (yes.equals("y")) {
@@ -40,6 +42,14 @@ public class Calculator {
                 System.out.print(i);
             }
             System.out.println();
+
+            System.out.println("Would you like to calculate again?\n" +
+                    "Press y for yes or any other key for abort.");
+
+                String yesNo = sc.nextLine();
+                if ( !yesNo.equals("y")) {
+                    terminate = true;
+                }
 
         } while (!terminate);
     }
@@ -65,8 +75,8 @@ public class Calculator {
                 System.out.print(numb1 + "%" + numb2 + "=");
                 return erg4;
             case 5:
-                double erg5 = Math.sqrt(Math.pow(numb1, 2) * Math.pow(numb2, 2));
-                System.out.print(numb1 + "^2" + "*" + numb2 + "^2" + "=");
+                double erg5 = Math.sqrt(Math.pow(numb1, 2) + Math.pow(numb2, 2));
+                System.out.print(numb1 + "^2" + "+" + numb2 + "^2" + "=");
                 return erg5;
             default:
                 return 0;
